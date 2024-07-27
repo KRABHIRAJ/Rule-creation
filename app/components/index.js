@@ -1,7 +1,9 @@
-import App from './App';
-import Header from './Header';
-import RuleContent from './RuleContent';
-import Table from './Table';
+import App from "./App";
+import Header from "./Header";
+import RuleContent from "./RuleContent";
+import Table from "./Table";
+import TableBodyRow from "./TableBodyRow";
+import TableHeader from "./TableHeader";
 
-export {App, Header, RuleContent, Table};
+export { App, Header, RuleContent, Table, TableHeader, TableBodyRow };
 
