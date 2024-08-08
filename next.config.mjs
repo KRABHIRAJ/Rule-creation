@@ -1,16 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https', 
-            hostname: 'newcdn.kalkifashion.com',     
-            port: '', 
-            pathname: '/**',
-          },
-        ],
-    }
+  images: {
+      domains: ['newcdn.kalkifashion.com'],
+  },
 };
 
 export default nextConfig;
-
