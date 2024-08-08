@@ -1,18 +1,37 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   SortableContainer,
   SortableElement,
   SortableHandle,
 } from "react-sortable-hoc";
 import { arrayMoveImmutable } from "array-move";
-import { TableBodyRow, TableHeader } from ".";
+import { Modal, TableBodyRow, TableHeader } from ".";
+import Image from "next/image";
 
 const Table = ({ data }) => {
   const [tableData, setTableData] = useState(data);
   const newlRowNum = useRef(1);
   const newlColumnNum = useRef(1);
+
+  // To control the modal content and visibility
+  const [modalContent, setModalContent] = useState('');
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleScroll = () => {
+    setModalVisible(false);
+  };
+
+  useEffect(() => {
+    if (isModalVisible) {
+      window.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isModalVisible]);
 
   // To delete row
   const deleteRow = (index) => {
@@ -67,7 +86,9 @@ const Table = ({ data }) => {
 
   // For draghandle icon in 1st column of every row
   const DragHandle = SortableHandle(() => (
-    <span className="cursor-move mr-2">☰</span>
+    <span className="cursor-move mr-2">
+      <Image src="/drag.svg" alt="drag-icon" height={20} width={20}/>
+    </span>
   ));
 
   // Row to be made draggable
@@ -79,6 +100,9 @@ const Table = ({ data }) => {
       deleteRow={deleteRow}
       addColumn={addColumn}
       DragHandle={DragHandle}
+      setModalContent={setModalContent}
+      setModalPosition={setModalPosition}
+      setModalVisible={setModalVisible}
     />
   ));
 
@@ -110,6 +134,8 @@ const Table = ({ data }) => {
         <TableHeader columns={columns} deleteColumn={deleteColumn} />
         <SortableList items={tableData} onSortEnd={onSortEnd} useDragHandle />
       </table>
+      {/* Modal to show on hover */}
+      <Modal setModalVisible={setModalVisible} content={modalContent} position={modalPosition} visible={isModalVisible} />
     </div>
   );
 };

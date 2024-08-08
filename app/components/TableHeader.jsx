@@ -10,13 +10,15 @@ const TableHeader = ({columns, deleteColumn}) => {
         </th>
         {columns.map((col) => (
           <th key={col} className="p-2 font-[500]">
-            {col.toUpperCase()}
-            <button
-              onClick={() => deleteColumn(col)}
-              className="ml-2 text-red-500"
-            >
-              🗑
-            </button>
+            <div className="flex justify-between items-center px-6">
+              {col.toUpperCase()}
+              <button
+                onClick={() => deleteColumn(col)}
+                className="ml-2 text-red-500 text-xl font-[600]"
+              >
+                🗑
+              </button>
+            </div>
           </th>
         ))}
       </tr>
