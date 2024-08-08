@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Here is the deployed version of this app after fixing version conflict. But as tailwind is not working as expected, so css is messed up. [Click here](https://rule-creation-4vaj0sgc9-krabhirajs-projects.vercel.app/)
 
-In order to see the app working properly. Please follow the below stated steps.
+```In order to see the app working properly```. Please follow the below stated steps.
 
 ## Getting Started
 
