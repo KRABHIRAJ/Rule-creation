@@ -55,7 +55,7 @@ const Table = ({ data }) => {
     newData.forEach((data) => {
       data[`newvariant${newlColumnNum.current}`] = {
         label: `New Variant ${newlColumnNum.current}`,
-        img: "",
+        img: "https://newcdn.kalkifashion.com/media/catalog/product/d/i/disha_patani_in_peach_lehenga_set-sg183849_1_.jpg",
       };
     });
     setTableData(newData);

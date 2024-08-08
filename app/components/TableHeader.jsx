@@ -3,14 +3,18 @@ import React from "react";
 const TableHeader = ({columns, deleteColumn}) => {
   return (
     <thead>
-      <tr className="">
-        <th className="p-2"></th>
-        <th className="p-2 sticky left-0 font-[500] bg-gray-50 z-10 min-w-[250px]">
-          Product Filter
+      <tr >
+        <th>
+          <div className="p-2"></div>
+        </th>
+        <th className="sticky left-0">
+          <div className="p-2 font-[500] bg-gray-50 z-1 min-w-[250px]">
+            Product Filter
+          </div>
         </th>
         {columns.map((col) => (
-          <th key={col} className="p-2 font-[500]">
-            <div className="flex justify-between items-center px-6">
+          <th key={col}>
+            <div className="flex justify-between items-center px-6 p-2 font-[500]">
               {col.toUpperCase()}
               <button
                 onClick={() => deleteColumn(col)}
