@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Here is the deployed version of this app after fixing version conflict. But as tailwind is not working as expected, so css is messed up. [Click here](https://rule-creation-4vaj0sgc9-krabhirajs-projects.vercel.app/)
+
+In order to see the app working properly. Please follow the below stated steps.
+
 ## Getting Started
 
 First, Clone the repository.
