@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./Modal.css"; // Make sure to import the CSS file
+import "./Modal.css";
 
 const Modal = ({ content, position, visible, setModalVisible }) => {
   const [isAnimating, setIsAnimating] = useState(visible);
