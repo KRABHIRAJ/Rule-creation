@@ -24,7 +24,7 @@ const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHand
 
   return (
     <tr>
-        <td className="sticky left-0 p-2 bg-gray-50">
+        <td className="sticky left-0 p-2 bg-gray-50 z-10">
           <div className="">
             <div className="flex flex-col justify-center items-center">
               <button
@@ -40,8 +40,8 @@ const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHand
             </div>
           </div>
         </td>
-        <td className="sticky left-8">
-          <div className="p-2 flex items-center justify-center w-[400px] h-[200px] bg-white rounded-lg m-4 z-[1000000]">
+        <td className="left-8 sticky z-10">
+          <div className="p-2 flex items-center justify-center w-[400px] h-[200px] bg-white rounded-lg m-4">
             <p 
             onMouseEnter={(e) => showModal(value.productFilter, e)}
             onMouseLeave={hideModal}

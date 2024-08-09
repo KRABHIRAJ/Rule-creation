@@ -2,27 +2,18 @@
 import React, { useEffect, useState } from "react";
 
 const Modal = ({ content, position, visible, setModalVisible }) => {
-  const [isAnimating, setIsAnimating] = useState(visible);
 
   const hideModal = () => {
     setModalVisible(false);
   };
 
-  useEffect(() => {
-    if (visible) {
-      setIsAnimating(true);
-    } else {
-      setIsAnimating(false);
-    }
-  }, [visible]);
-
-  if (!isAnimating && !visible) return null;
+  if (!visible) return null;
 
   return (
     <div
       onMouseLeave={hideModal}
       className={`modal ${
-        isAnimating ? "modal-open" : "modal-close"
+        visible ? "modal-open" : "modal-close"
       } z-[100] justify-center items-center flex flex-col bg-white px-4 gap-2 py-3 rounded-md shadow-md border border-gray-300 w-[300px] h-[120px] overflow-auto no-scrollbar`}
       style={{ top: position.top, left: position.left }}
     >

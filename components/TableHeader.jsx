@@ -8,7 +8,7 @@ const TableHeader = ({columns, deleteColumn}) => {
         <th>
           <div className="p-2"></div>
         </th>
-        <th className="sticky left-0">
+        <th className="sticky left-0 z-10">
           <div className="p-2 font-[500] bg-gray-50 z-1 min-w-[250px]">
             Product Filter
           </div>
