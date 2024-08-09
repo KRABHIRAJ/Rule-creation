@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const TableHeader = ({columns, deleteColumn}) => {
@@ -20,7 +21,7 @@ const TableHeader = ({columns, deleteColumn}) => {
                 onClick={() => deleteColumn(col)}
                 className="ml-2 text-red-500 text-xl font-[600]"
               >
-                🗑
+                <Image  src="/trash-bin.png" alt="delete-icon" height={20} width={20}/>
               </button>
             </div>
           </th>
