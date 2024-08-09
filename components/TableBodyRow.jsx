@@ -1,7 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 
-const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHandle, setModalContent,setModalPosition, setModalVisible}) => {
+const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHandle, setModalContent,setModalPosition, setModalVisible, handleSelectImage}) => {
+  const fileInputRef = useRef(null);
+  const selectedCol = useRef('');
   const showModal = (content, e) => {
     console.log('show');
     const { clientX, clientY } = e;
@@ -20,6 +22,24 @@ const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHand
     console.log('hide');
 
     setModalVisible(false);
+  };
+
+  const habdleFileSelect =(col) => {
+    selectedCol.current = col;
+    fileInputRef.current.click(); 
+  }
+
+  const handleImageChange = (e) => {
+    
+    const file = e.target.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        handleSelectImage(rowIndex, selectedCol.current, event.target.result)
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -51,10 +71,36 @@ const TableBodyRow = ({ rowIndex, value, columns, deleteRow, addColumn, DragHand
             </p>
           </div>
         </td>
-        {columns.map((col) => (
-          <td key={col}>
-            <div className="bg-white rounded-lg p-4 m-4 w-[200px] h-[200px] flex items-center justify-center z-0">
-              <Image src={value?.[col]?.img} alt="Image" width={150} height={170} objectFit="cover" className="rounded-md z-0" />
+        {columns.map((col, colIndex) => (
+          <td key={`${rowIndex}-${col}`}>
+            <div className="bg-white rounded-lg p-4 m-4 w-[200px] h-[200px] flex items-center group justify-center z-0 relative">
+              <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => handleImageChange(e, rowIndex, col, colIndex)}
+              />
+              {
+                value?.[col]?.img &&
+                (<Image src={value?.[col]?.img} alt="Image" width={150} height={170} objectFit="cover" className="rounded-md z-0" />) 
+              }
+
+              {
+                value?.[col]?.img ? 
+                (<div onClick={() => habdleFileSelect(col)} className="cursor-pointer p-3 opacity-0 group-hover:opacity-100 flex items-center justify-center shadow-sm border border-gray-200 rounded-md absolute bg-white ">
+                  <Image src="/edit.png" alt="select-icon" height={20} width={20} />
+                </div>) 
+                :
+                (
+                  <div onClick={() => habdleFileSelect(col)} className="border border-gray-200 rounded-md shadow-sm cursor-pointer flex items-center gap-x-2 py-2 px-4">
+                    <p className="text-2xl mt-[-3px]">+</p>
+                    <p>Add design</p>
+                  </div>
+                ) 
+
+              }
+              
             </div>
           </td>
         ))}

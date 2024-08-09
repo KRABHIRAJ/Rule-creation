@@ -49,13 +49,22 @@ const Table = ({ data }) => {
     setTableData(newData);
   };
 
+  // To add or update image while selecting.
+
+  const handleSelectImage = (row, col, data) => {
+    
+    const newData = [...tableData];
+    newData[row][col]['img'] = data;
+    setTableData(newData);
+  }
+
   // To add new column on click of add(+) icon
   const addColumn = () => {
     const newData = [...tableData];
     newData.forEach((data) => {
       data[`newvariant${newlColumnNum.current}`] = {
         label: `New Variant ${newlColumnNum.current}`,
-        img: "https://newcdn.kalkifashion.com/media/catalog/product/d/i/disha_patani_in_peach_lehenga_set-sg183849_1_.jpg",
+        // img: "https://newcdn.kalkifashion.com/media/catalog/product/d/i/disha_patani_in_peach_lehenga_set-sg183849_1_.jpg",
       };
     });
     setTableData(newData);
@@ -65,8 +74,23 @@ const Table = ({ data }) => {
   // To add new row on click of add(+) icon
   const addRow = () => {
     const newData = [...tableData];
-    const payload = { ...newData[0] };
+    const tempPayload = { ...newData[0] };
+    const keys = Object.keys(tempPayload);
+    const payload = {};
     payload["productFilter"] = `New filter ${newlRowNum.current}`;
+    keys.forEach((key, index) => {
+      if(key === 'variant1' || key === 'variant2' || key === 'variant3'){
+        payload[key] = {
+          label: tempPayload[key]['label'],
+          img: "https://newcdn.kalkifashion.com/media/catalog/product/d/i/disha_patani_in_peach_lehenga_set-sg183849_1_.jpg",
+        }
+      }
+      if(index > 3){
+        payload[key] = {
+          label: tempPayload[key]['label']
+        }
+      }
+    })
     newData.push(payload);
     setTableData(newData);
     newlRowNum.current++;
@@ -103,6 +127,7 @@ const Table = ({ data }) => {
       setModalContent={setModalContent}
       setModalPosition={setModalPosition}
       setModalVisible={setModalVisible}
+      handleSelectImage={handleSelectImage}
     />
   ));
 
