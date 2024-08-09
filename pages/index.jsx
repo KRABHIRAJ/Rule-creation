@@ -1,4 +1,4 @@
-import { App } from "./components";
+import {App} from '../components/index'
 
 export default function Home() {
   return (

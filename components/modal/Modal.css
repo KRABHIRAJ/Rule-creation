@@ -1,0 +1,13 @@
+.modal {
+    position: fixed;
+    opacity: 0;
+  }
+  
+  .modal-open {
+    opacity: 1;
+  }
+  
+  .modal-close {
+    opacity: 0;
+  }
+  

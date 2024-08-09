@@ -86,9 +86,9 @@ const Table = ({ data }) => {
 
   // For draghandle icon in 1st column of every row
   const DragHandle = SortableHandle(() => (
-    <span className="cursor-move mr-2">
+    <div className="cursor-move ml-1 mt-1 ">
       <Image src="/drag.svg" alt="drag-icon" height={20} width={20}/>
-    </span>
+    </div>
   ));
 
   // Row to be made draggable

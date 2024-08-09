@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const TableHeader = ({columns, deleteColumn}) => {
@@ -7,7 +8,7 @@ const TableHeader = ({columns, deleteColumn}) => {
         <th>
           <div className="p-2"></div>
         </th>
-        <th className="sticky left-0">
+        <th className="sticky left-0 z-10">
           <div className="p-2 font-[500] bg-gray-50 z-1 min-w-[250px]">
             Product Filter
           </div>
@@ -20,7 +21,7 @@ const TableHeader = ({columns, deleteColumn}) => {
                 onClick={() => deleteColumn(col)}
                 className="ml-2 text-red-500 text-xl font-[600]"
               >
-                🗑
+                <Image  src="/trash-bin.png" alt="delete-icon" height={20} width={20}/>
               </button>
             </div>
           </th>

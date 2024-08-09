@@ -1,5 +1,5 @@
 import { Table } from ".";
-import {rowData} from '../utils/constants'
+import {rowData} from '../app/utils/constants'
 
 const RuleContent = () => {
   return (
